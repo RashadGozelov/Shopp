@@ -1,0 +1,58 @@
+﻿@model Bio
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Facebook" style="margin-top: -23px;font-size: 16px;color:black;">Facebook:</label>
+                    <textarea asp-for="Facebook" class="form-control" style="font-size: 21px;"></textarea>
+                    <span asp-validation-for="Facebook" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top:55px">
+                    <label asp-for="Twitter" style="margin-top: -23px;font-size: 16px;color:black;">Twitter:</label>
+                    <textarea asp-for="Twitter" class="form-control" style="font-size: 21px;"></textarea>
+                    <span asp-validation-for="Twitter" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top:55px">
+                    <label asp-for="Instagram" style="margin-top: -23px;font-size: 16px;color:black;">Instagram:</label>
+                    <textarea asp-for="Instagram" class="form-control" style="font-size: 21px;"></textarea>
+                    <span asp-validation-for="Instagram" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top:55px">
+                    <label asp-for="Youtube" style="margin-top: -23px;font-size: 16px;color:black;">Youtube:</label>
+                    <textarea asp-for="Youtube" class="form-control" style="font-size: 21px;"></textarea>
+                    <span asp-validation-for="Youtube" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                        <label asp-for="PhotoUpd">Photo:</label>
+                        <div class="fileinput-new thumbnail">
+                            <img src="~/admin/assets/img/image_placeholder.jpg" alt="...">
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                        <div>
+                            <span class="btn btn-rose btn-round btn-file" style="margin-left: 38px;">
+                                <span class="fileinput-new">Şəkil seç</span>
+                                <span class="fileinput-exists">Dəyiş</span>
+                                <input asp-for="PhotoUpd" accept="image/*" style="z-index:0;" />
+                            </span>
+                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"> Sil</a>
+                        </div>
+                        <span asp-validation-for="PhotoUpd" class="text-danger" style="margin-left: 37px"></span>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-info" value="Create" />
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+        </div>
+    </div>
+</div>
+

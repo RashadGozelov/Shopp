@@ -1,0 +1,27 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name" style="margin-top: -23px;font-size: 16px;color:black;">Name:</label>
+                    <textarea asp-for="Name" class="form-control" style="font-size: 21px;"></textarea>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <input type="submit" class="btn btn-info" value="Create" />
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+        </div>
+    </div>
+</div>
+
+
+

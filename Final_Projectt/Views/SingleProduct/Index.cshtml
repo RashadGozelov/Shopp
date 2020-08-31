@@ -1,0 +1,240 @@
+﻿@model SingleProductViewmodel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- breadcrumb-area start -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a >Əsas səhifə</a></li>
+                    <li class="breadcrumb-item active"><i class="fas fa-chevron-right"></i> Məhsulun detalı</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- breadcrumb-area end -->
+<!-- content-wraper start -->
+<div class="content-wraper">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="sinlge-product-wrap box-module">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="single-product-tab">
+                                <div class="zoomWrapper">
+                                    <div id="img-1" class="zoomWrapper single-zoom">
+
+                                        @if (Model.SingleProduct.Discount != null && Model.SingleProduct.Discount.Value != 0)
+                                        {
+                                            <h5>@Model.SingleProduct.Discount %<p style="display:block;">endirim</p></h5>
+                                        }
+                                        else
+                                        {
+                                            <h5><p></p></h5>
+                                        }
+                                        <img id="zoom1" src="~/img/@Model.SingleProduct.ProductImages.FirstOrDefault()?.Image" alt="big-1">
+                                    </div>
+                                    <div class="single-zoom-thumb">
+                                        <ul class="s-tab-zoom single-product-active owl-carousel" id="gallery_01">
+                                            @for (int i = 0; i < Model.SingleProduct.ProductImages.Count(); i++)
+                                            {
+                                                if (i == 0)
+                                                {
+                                                    <li>
+                                                        <a href="#" class="elevatezoom-gallery active" data-image="/img/@Model.SingleProduct.ProductImages.ToList()[i].Image"><img src="~/img/@Model.SingleProduct.ProductImages.ToList()[i].Image" /></a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a href="#" class="elevatezoom-gallery" data-image="/img/@Model.SingleProduct.ProductImages.ToList()[i].Image"><img src="~/img/@Model.SingleProduct.ProductImages.ToList()[i].Image" /></a>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- product-thumbnail-content start -->
+                            <div class="quick-view-content">
+                                <div class="product-info">
+                                    <h2>@Html.Raw(Model.SingleProduct.Name)</h2>
+                                    <div class="price-box">
+                                        @if (Model.SingleProduct.Discount != null && Model.SingleProduct.Discount.Value != 0)
+                                        {
+                                            <span class="new-price oldprice">
+                                                @(Model.SingleProduct.Price - (Model.SingleProduct.Price * Model.SingleProduct.Discount) / 100) ₼
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="new-price oldprice">
+                                            </span>
+                                        }
+                                        @if (Model.SingleProduct.Discount != null && Model.SingleProduct.Discount.Value != 0)
+                                        {
+                                            <del class="new-price">@Model.SingleProduct.Price ₼</del>
+                                        }
+                                        else
+                                        {
+                                            <span class="new-price">@Model.SingleProduct.Price ₼</span>
+                                        }
+                                    </div>
+                                    <ul class="list-unstyled">
+                                        <style>
+                                            p {
+                                                display: inline;
+                                            }
+                                        </style>
+                                        <li>Brand: <span>@Model.SingleProduct.MarkaCategory.Marka.Name</span></li>
+                                        <li>Məhsul: @Html.Raw(Model.SingleProduct.Description)</li>
+                                    </ul>
+                                    <div class="quick-add-to-cart">
+                                        <div class="modal-cart">
+                                            <div class="quantity">
+                                                @*<label>Sayı</label>
+                                                <div class="cart-plus-minus">
+                                                    <input type="number" value="1" min="0" step="1" class="input-box">
+                                                </div>*@
+                                            </div>
+                                            <a class="add-to-cart add-basket" data-id="@Model.SingleProduct.Id" style="width:125px;padding-top:7px;">Səbətə at</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- product-thumbnail-content end -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="product-info-detailed">
+                                <div class="discription-tab-menu">
+                                    <ul role="tablist" class="nav">
+                                        <li class="active"><a href="#description" data-toggle="tab" class="active show">Təsvir</a></li>
+                                        <li><a href="#review" data-toggle="tab">Rəylər</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="discription-content">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active show" id="description">
+                                        <div class="description-content">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div id="review" class="tab-pane fade">
+                                        <div class="form-group">
+                                            <div class="fb-comments" data-href="https://localhost:44312/SingleProduct/Index?id=@Model.SingleProduct.Id/default.aspx" data-numposts="5" data-colorscheme="light"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="related-products box-module mb-60">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="secton-title">
+                                <h2>Oxşar məhsullar</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="prodict-two-active owl-carousel">
+                            @foreach (var item in Model.Products)
+                            {
+                                <div class="col-lg-3">
+                                    <!-- sinle-product-item start -->
+                                    <div class="sinle-product-item">
+                                        <div class="product-thumb">
+                                            @if (item.Discount != null && item.Discount.Value != 0)
+                                            {
+                                                <h5>@item.Discount %<p style="display:block;">endirim</p></h5>
+                                            }
+                                            else
+                                            {
+                                                <h5><p></p></h5>
+                                            }
+                                            <a asp-controller="SingleProduct" asp-action="Index" asp-route-id="@item.Id" asp-route-catid="@item.MarkaCategory.Category.Id">
+
+                                                <img src="~/img/@item.ProductImages.FirstOrDefault()?.Image" class="primary-image">
+                                            </a>
+                                            <div class="addCart add-basket"  data-id="@Model.SingleProduct.Id">
+                                                <a class="btn-carta"><i class="fas fa-shopping-cart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="rating-box">
+                                                <ul class="rating d-flex">
+                                                    <li><i class="ion-ios-star"></i></li>
+                                                    <li><i class="ion-ios-star"></i></li>
+                                                    <li><i class="ion-ios-star"></i></li>
+                                                    <li><i class="ion-android-star-outline"></i></li>
+                                                    <li><i class="ion-android-star-outline"></i></li>
+                                                </ul>
+                                            </div>
+                                            <h4 class="product-name">
+                                                <a asp-controller="SingleProduct" asp-action="Index" asp-route-id="@item.Id" asp-route-catid="@item.MarkaCategory.Category.Id">
+                                                    @Html.Raw(item.Name)
+                                                </a>
+                                            </h4>
+                                            <div class="price-box">
+                                                @if (item.Discount != null && item.Discount.Value != 0)
+                                                {
+                                                    <span class="new-price oldprice">
+                                                        @(item.Price - (item.Price * item.Discount) / 100) ₼
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="new-price oldprice">
+                                                    </span>
+                                                }
+                                                @if (item.Discount != null && item.Discount.Value != 0)
+                                                {
+                                                    <del class="new-price">@item.Price ₼</del>
+                                                }
+                                                else
+                                                {
+                                                    <span class="new-price">@item.Price ₼</span>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- sinle-product-item end -->
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<About>
+@{
+    ViewData["Title"] = "About";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                </div>
+                <div class="offset-md-10 col-md-2 col-sm-5">
+                    @foreach (var about in Model)
+                    {
+                        <a asp-action="Update" asp-route-id="@about.Id" class="btn btn-warning" title="Yenilə" style="padding-left: 40px;margin-left: 12px;width: 117px;">
+                            <i class="fas fa-edit" style="font-size: 22px;"></i>
+                        </a>
+                    }
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">№</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int count = 0;
+
+                                }
+
+                                @foreach (var aboutt in Model)
+                                {
+                                    count++;
+                                <tr>
+                                    <td class="text-center">@count</td>
+                                    <td>
+                                        <img src="~/img/@aboutt.Image" width="200px" height="120px" />
+                                    </td>
+                                    <td>
+                                        @if (aboutt.Title.Length > 30)
+                                        {
+                                            @Html.Raw(aboutt.Title.Substring(0, 30) + "...")
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(aboutt.Title)
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (aboutt.Description.Length > 30)
+                                        {
+                                            @Html.Raw(aboutt.Description.Substring(0, 30) + "...")
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw(aboutt.Description)
+                                        }
+                                    </td>
+                                    <td class="text-right td-actions">
+                                        <a asp-action="Detail" asp-route-id="@aboutt.Id" class="btn btn-success" title="Bax">
+                                            <i class="fas fa-info" style="font-size: 17px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BasketProduct>
+
+@foreach (var item in Model)
+{
+    <div class="wish-item">
+
+        <div class="cat">
+            <img src="~/img/@item.Image" alt="">
+
+            <div class="cat_two">
+                <p>
+                    @Html.Raw(item.Name)
+                </p>
+                <p>
+                    @item.Quantity x @item.Price ₼
+                </p>
+            </div>
+            <div class="cat_icon">
+                <a href="#">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        
+    </div>
+    <div class="wish-item">
+        <div class="cat_bottom">
+            <div class="cat_s">
+                <p>Cəm:<span>@item.Subtotal ₼</span></p>
+            </div>
+            <div class="cat_d cart-two n7">
+                <a asp-controller="Cart" asp-action="Index"><strong>Sifarişi rəsmiləşdir</strong></a>
+            </div>
+        </div>
+    </div>
+}

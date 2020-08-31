@@ -1,0 +1,42 @@
+﻿@model Bio
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <img src="~/img/@Model.Image" width="220px" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h5>@Model.Facebook</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h5>@Model.Twitter</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h5>@Model.Instagram</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h5>@Model.Youtube</h5>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-5">
+    <div class="col-12">
+        <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+    </div>
+</div>
+
+
+

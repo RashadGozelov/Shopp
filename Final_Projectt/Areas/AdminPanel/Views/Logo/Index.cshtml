@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Bio>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-rose card-header-icon">
+                </div>
+                <div class="offset-md-10 col-md-2 col-sm-5">
+                    @foreach (var bio in Model)
+                    {
+                        <a asp-action="Update" asp-route-id="@bio.Id" class="btn btn-warning" title="Yenilə" style="padding-left: 40px;margin-left: 12px;width: 117px;">
+                            <i class="fas fa-edit" style="font-size: 22px;"></i>
+                        </a>
+                    }
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">№</th>
+                                    <th>Image</th>
+                                    <th>Facebook</th>
+                                    <th>Twitter</th>
+                                    <th>Instagram</th>
+                                    <th>Youtube</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int count = 0;
+
+                                }
+
+                                @foreach (var bios in Model)
+                                {
+                                    count++;
+                                <tr>
+                                    <td class="text-center">@count</td>
+                                    <td>
+                                        <img src="~/img/@bios.Image" width="200px" height="120px" />
+                                    </td>
+                                    <td>@bios.Facebook</td>
+                                    <td>@bios.Twitter</td>
+                                    <td>@bios.Instagram</td>
+                                    <td>@bios.Youtube</td>
+                                    <td class="td-actions text-right">
+                                        <a asp-action="Detail" asp-route-id="@bios.Id" class="btn btn-success" title="Bax">
+                                            <i class="fas fa-info" style="font-size: 17px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,90 @@
+﻿@model Bio
+<footer class="footer">
+    <div class="container">
+        <div class="footer-box">
+            <div class="col-12 col-lg-9 col-md-9">
+                <div class="footer__left">
+                    <div class="col">
+                        <div class="footer__top">
+                            <h3 class="footer-title">Məlumat</h3>
+                            <ul class="footer-menu">
+                                <li class="footer-menu__item"><a asp-controller="Shop" asp-action="Index">Kateqoriyalar</a></li>
+                                <li class="footer-menu__item"><a asp-controller="Partner" asp-action="Index">Partnyorlarımız</a></li>
+                                <li class="footer-menu__item"></li>
+                            </ul>
+                        </div>
+                        <div class="footer__bottom footer__bottom_hidden-sm">
+                            <h3 class="footer-title">Ödəniş:</h3>
+                            <ul class="payment">
+                                <li class="payment__img-wrap">
+                                    <img src="~/img/visa/visa-pay-logo.svg" alt="">
+                                </li>
+                                <li class="payment__img-wrap">
+                                    <img src="~/img/visa/mastercard.svg">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer__top">
+                            <h3 class="footer-title">Şirkət</h3>
+                            <ul class="footer-menu">
+                                <li class="footer-menu__item"><a asp-controller="About" asp-action="Index">Haqqımızda</a></li>
+                                <li class="footer-menu__item"><a asp-controller="Contact" asp-action="Index">Əlaqə</a></li>
+                                <li class="footer-menu__item"></li>
+                            </ul>
+                        </div>
+                        <div class="footer__bottom">
+                            <h3 class="footer-title">Bizə qoşulun:</h3>
+                            <ul class="social-list social-link__footer">
+                                <li class="social_item">
+                                    <a href="@Model.Facebook" class="social-link facebook-link"
+                                       target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li class="social_item">
+                                    <a href="@Model.Twitter" class="social-link twitter-link"
+                                       target="_blank"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li class="social_item">
+                                    <a href="@Model.Instagram" class="social-link instagram-link"
+                                       target="_blank"><i class="fab fa-instagram"></i></a>
+                                </li>
+                                <li class="social_item">
+                                    <a href="@Model.Youtube" class="social-link youtube-link"
+                                       target="_blank"><i class="fab fa-youtube"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="footer__right">
+                    <div class="col">
+                        <div class="footer__top">
+                            <div class="footer-support">
+                                <h2 class="support-title">Məlumat mərkəzi</h2>
+                                <time class="support-time">9:00 - 20:00 (hər gün)</time>
+                            </div>
+                            <div class="footer-callback">
+                                <div class="footer-callback__phone">
+                                    <a class="phone-link">
+                                        <i class="fas fa-phone-volume"></i>
+                                        <strong>+994507650504</strong>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="developing-info footer__bottom">
+                            <span>Saytın hazırlanması</span><span>
+                                <a href="https://www.facebook.com/resat.resatov/timeline?lst=100002598650844%3A100002598650844%3A1570316119" class="ic-turum"
+                                   target="_blank">Rəşad Gözəlov</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

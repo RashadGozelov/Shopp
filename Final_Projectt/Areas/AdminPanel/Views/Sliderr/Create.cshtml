@@ -1,0 +1,61 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Title1" style="margin-top: -23px;font-size: 16px;color:black;">Title:</label>
+                    <textarea asp-for="Title1" class="form-control" style="font-size: 21px;"></textarea>
+                    <span asp-validation-for="Title1" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top:55px">
+                    <label asp-for="Title2" style="margin-top: -23px;font-size: 16px;color:black;">Description:</label>
+                    <textarea asp-for="Title2" class="form-control" style="font-size: 21px;"></textarea>
+                    <span asp-validation-for="Title2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                        <label asp-for="Photo">Photo:</label>
+                        <div class="fileinput-new thumbnail">
+                            <img src="~/admin/assets/img/image_placeholder.jpg" alt="...">
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                        <div>
+                            <span class="btn btn-rose btn-round btn-file" style="margin-left: 38px;">
+                                <span class="fileinput-new">Şəkil seç</span>
+                                <span class="fileinput-exists">Dəyiş</span>
+                                <input asp-for="Photo" accept="image/*" style="z-index:0;" />
+                            </span>
+                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"> Sil</a>
+                        </div>
+                        <span asp-validation-for="Photo" class="text-danger" style="margin-left: 37px"></span>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-info" value="Create" />
+            </form>
+        </div>
+    </div>
+    <div class="row mt-15">
+        <div class="col-12">
+            <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
+<script>
+        ClassicEditor
+            .create(document.querySelector('#Title1'))
+            .catch(error => {
+                console.error(error);
+        });
+    ClassicEditor
+        .create(document.querySelector('#Title2'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+

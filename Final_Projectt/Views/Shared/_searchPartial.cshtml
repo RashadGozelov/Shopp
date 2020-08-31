@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Product>
+
+<div class="shop-product-wrap box-module">
+    <div class="row">
+        @foreach (var shop in Model)
+        {
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <!-- sinle-product-item start -->
+                <div class="sinle-product-item mb-20">
+                    <div class="product-thumb">
+                        @if (shop.Discount != null && shop.Discount.Value != 0)
+                        {
+                            <h5>@shop.Discount %<p style="display:block;">endirim</p></h5>
+                        }
+                        else
+                        {
+                            <h5><p></p></h5>
+                        }
+                        <a asp-controller="SingleProduct" asp-action="Index" asp-route-id="@shop.Id" asp-route-catid="@shop.MarkaCategory.Category.Id">
+
+                            <img alt="" src="~/img/@shop.ProductImages.FirstOrDefault()?.Image" class="primary-image">
+
+                        </a>
+                        <div class="addCart add-basket" data-id="@shop.Id">
+                            <a class="btn-carta"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+
+                        <h4 class="product-name"><a class="src" asp-controller="SingleProduct" asp-action="Index" asp-route-id="@shop.Id" asp-route-catid="@shop.MarkaCategory.Category.Id">@Html.Raw(shop.Name)</a></h4>
+                        <div class="price-box">
+                            @if (shop.Discount != null && shop.Discount.Value != 0)
+                            {
+                                <span class="new-price oldprice">
+                                    @(shop.Price - (shop.Price * shop.Discount) / 100) ₼
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="new-price oldprice">
+                                </span>
+                            }
+                            @if (shop.Discount != null && shop.Discount.Value != 0)
+                            {
+                                <del class="new-price">@shop.Price ₼</del>
+                            }
+                            else
+                            {
+                                <span class="new-price">@shop.Price ₼</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- sinle-product-item end -->
+            </div>
+        }
+    </div>
+</div>

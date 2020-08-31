@@ -1,0 +1,88 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<style>
+    p {
+        display: inline;
+    }
+
+    h3, h5 {
+        font-weight: 600;
+    }
+
+    .filter-option-inner-inner {
+        font-size: 15px;
+        font-weight: bold;
+        color: black;
+    }
+
+    button::after {
+        border-top: 0em !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h3>1.Məhsulun adı : @Html.Raw(Model.Product.Name)</h3>
+            <h5>2.Məhsulun təsviri : @Html.Raw(Model.Product.Description)</h5>
+            <h5>
+                3.Məhsulun qiyməti :  @if (Model.Product.Discount != null && Model.Product.Discount.Value != 0)
+                {
+                    <span>
+                        @(Model.Product.Price - (Model.Product.Price * Model.Product.Discount) / 100) ₼
+                    </span>
+                }
+                else
+                {
+                    <span>@Model.Product.Price ₼</span>
+                }
+            </h5>
+            <h5>4.Məhsulun endirimi : @Html.Raw(Model.Product.Discount + " " + "%")</h5>
+            <h5>5.Məhsulun sayı : @Html.Raw(Model.Product.Count)</h5>
+            <h5>6.Məhsulun tarixi : @Html.Raw(Model.Product.Date)</h5>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h5>
+                7.Kateqoriya :  <p>@Model.Product.MarkaCategory.Category.Name</p>
+            </h5>
+        </div>
+        <div class="col-12">
+            <h5>
+                8.Marka :  <p>@Model.Product.MarkaCategory.Marka.Name</p>
+            </h5>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            @foreach (var item in Model.ProductImages.Where(i => i.ProductId == i.Product.Id))
+            {
+                <img src="~/img/@item.Image" style="width:180px;height:150px;" />
+            }
+        </div>
+        <div class="col-12">
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <form method="post">
+                <p class="text-danger">Are you sure this delete?</p>
+                <input type="submit" class="btn btn-danger" value="Delete" style="display:block;"/>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+        </div>
+    </div>
+</div>
+

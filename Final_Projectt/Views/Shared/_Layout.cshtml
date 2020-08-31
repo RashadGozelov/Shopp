@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!--Toast 1 version-->
+    @*<link href="~/sweetalert/sweetalert2.css" rel="stylesheet" />*@
+    <!--Toast-->
+    <!-- 1.Slider Word Animate -->
+    <link rel="stylesheet" href="~/css/animate.css">
+    <!-- 2.Categoriya dropdown -->
+    <link rel="stylesheet" href="~/css/nice-select.css">
+    <!-- 3.Icon Assorti -->
+    <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <!-- 4.Slider -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/mainmenu.css">
+    <link rel="stylesheet" href="~/cssbasic/responsive.css">
+    <link rel="stylesheet" href="~/style.css">
+    <link rel="stylesheet" href="~/cssbasic/cssbasic.css">
+    <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://kit.fontawesome.com/8ee7bee6cf.js"></script>
+    <!--Toast 2 version-->
+    <link href="~/CodeSeven-toastr-50092cc/build/toastr.min.css" rel="stylesheet" />
+    <!--Toast-->
+    
+</head>
+
+<body>
+
+
+    @await Component.InvokeAsync("Header")
+    @RenderBody()
+    @await Component.InvokeAsync("Footer")
+
+
+    <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- plugins-->
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.mainmenu.js"></script>
+    <script src="~/js/ajax-email.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <!--Toast 1 version-->
+    @*<script src="~/sweetalert/sweetalert2.all.js"></script>*@
+    <!--Toast-->
+    <!--Toast 2 version-->
+    <script src="~/CodeSeven-toastr-50092cc/build/toastr.min.js"></script>
+    <!--Toast-->
+    <!-- main js -->
+    <script src="~/js/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+
+</body>
+
+</html>

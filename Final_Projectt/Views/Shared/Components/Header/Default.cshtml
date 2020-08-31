@@ -1,0 +1,271 @@
+﻿@using Final_Projectt.ViewModel
+@model HeaderViewModel
+@{
+    decimal totalPrice = 0;
+}
+<header>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                  
+                        <div class="col-12 col-lg-3 col-md-3">
+                            <div class="logo">
+                                <a asp-controller="Home" asp-action="Index"><img src="~/img/@Model.Image" alt="logo"></a>
+                            </div>
+                        </div>
+               
+                <div class="col-12 col-lg-6 col-md-6 justify-content-center d-flex align-items-center">
+                    <div class="row">
+                        <form method="get" asp-controller="Home" asp-action="SearchProduct">
+                            <div class="wrap">
+                                <div class="search nav-item dropdown">
+                                    <input type="text" id="search" class="searchTerm" placeholder="Axtar..." autocomplete="off">
+                                    <ul id="search-list"></ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-3">
+                    <div class="header-cart-box">
+                        <div class="setting-account">
+                            <div class="btn-group">
+                                <button class="btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <i class="fas fa-user"></i> <i class="fa fa-angle-down"></i>
+                                </button>
+                                <div class="dropdown-menu" style="padding:0px;">
+                                    <ul>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li class="reg"><a asp-controller="Account" asp-action="Accountt">Hesabım</a></li>
+                                            <li class="log"><a asp-controller="Account" asp-action="Logout">Çıxış</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="reg"><a asp-controller="Account" asp-action="Register">Qeydiyyat</a></li>
+                                            <li class="log"><a asp-controller="Account" asp-action="Login">Daxil ol</a></li>
+                                        }
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="top-shopoing-cart" class="btn-group">
+                            @{
+                                int cartCount = 0;
+                                var cartJson = Context.Session.GetString("cart");
+
+                                List<BasketProduct> basketProducts = null;
+
+                              
+                                @if (cartJson != null)
+                                {
+                                    basketProducts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BasketProduct>>(cartJson);
+                                    cartCount = basketProducts.Sum(p => p.Quantity);
+
+                                }
+                            }
+
+                           
+                           
+
+                            <button class="btn-link shopping-cart home-three dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-shopping-cart d-inline-flex">
+                                    @if (cartCount == 0)
+                                    {
+                                        <span id="cart_count" class="badge p-0" style="font-size:62%;">
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span id="cart_count" class="badge p-0" style="font-size:62%;">
+                                            @cartCount
+                                        </span>
+                                    }
+                                </i>
+                                <span class="top-cart-total">
+                                    <span class="cart-text-items">Səbət</span>
+                                </span>
+                            </button>
+
+                            <div class="dropdown-menu dropdown-cart d-none" style="padding: 0px 6px 10px 8px !important;width: 235px;">
+                                <div class="home">
+                                    <div class="wish-cart margin h-cart">
+
+                                    </div>
+
+
+
+                                    @*<div class="wish-cart margin h-cart">
+
+            @if (basketProducts != null)
+            {
+                @foreach (var item in basketProducts.Take(5))
+                {
+                    <div class="wish-item">
+
+                        <div class="cat">
+                            <img src="~/img/@item.Image" alt="">
+
+                            <div class="cat_two">
+                                <p>
+                                    @Html.Raw(item.Name)
+                                </p>
+                                <p>
+                                    @if (item.Discount != null && item.Discount.Value != 0)
+                                    {
+
+                                       @(item.Quantity + " x " + ((item.Price - (item.Price * item.Discount) / 100)))
+
+                                    }
+                                    else
+                                    {
+                                        @(item.Quantity +" x "+ item.Price)
+                                    }
+
+                                </p>
+                            </div>
+                            <div class="cat_icon">
+                                <a asp-controller="Cart" asp-action="Remove">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+                <div class="wish-item">
+                    <div class="cat_bottom">
+                        <div class="cat_s">
+                            <p>Cəm:<span>
+                                  @foreach (var product in basketProducts)
+                                    {
+                                        @if (product.Discount != null && product.Discount.Value != 0)
+                                        {
+                                            product.Subtotal = (decimal)(product.Price - (product.Price * product.Discount) / 100) * product.Quantity;
+                                            totalPrice += product.Subtotal;
+                                        }
+                                        else
+                                        {
+                                            product.Subtotal = product.Price * product.Quantity;
+                                            totalPrice += product.Subtotal;
+                                        }
+                                   }
+                                @totalPrice ₼
+                                </span></p>
+                        </div>
+                        <div class="cat_d cart-two n7">
+                            <a asp-controller="Cart" asp-action="Index"><strong>Sifarişi rəsmiləşdir</strong></a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>*@
+                                </div>
+                            </div>
+
+                            @*<div class="dropdown-menu">
+            <ul class="mini-cart-sub mini-cart-3">
+                <li class="cart-total-box">
+                    @foreach (var product in Model.basketProduct)
+                    {
+                        @if (product.Discount != null && product.Discount.Value != 0)
+                        {
+                            product.Subtotal = (decimal)(product.Price - (product.Price * product.Discount) / 100) * product.Quantity;
+                            totalPrice += product.Subtotal;
+                        }
+                        else
+                        {
+                            product.Subtotal = product.Price * product.Quantity;
+                            totalPrice += product.Subtotal;
+
+                        }
+                    }
+                    <h5>
+                        Toplam :<span class="float-right">
+                            @totalPrice
+                        </span>
+                    </h5>
+                </li>
+                <li>
+                    <p class="text-center cart-button">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Cart" asp-action="Index">Səbət</a>
+                            <a asp-controller="Checkout" asp-action="Index">Sifarişi tamamlayın</a>
+
+                        }
+                        else
+                        {
+                            <a asp-controller="Cart" asp-action="Index">Səbət</a>
+                        }
+                    </p>
+                </li>
+            </ul>
+        </div>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-nav">
+        <div class="container">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">ƏSAS SƏHİFƏ</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    KATEQORİYA <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                        <li class="dropdown-submenu">
+
+                                            <a class="dropdown-item" tabindex="-1" href="/shop/index?categoryid=@category.Id">
+                                                @category.Name
+                                            </a>
+                                            <ul class="dropdown-menu" style="top:0px;">
+                                                @foreach (var marka in category.Markas)
+                                                {
+
+                                                    <li class="lia"><a class="dropdown-item" href="/shop/index?markaid=@marka.Id&categoryid=@category.Id">@marka.Name</a></li>
+
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="Partner" asp-action="Index">PARTNYORLARIMIZ</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="About" asp-action="Index">HAQQIMIZDA</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="Contact" asp-action="Index">ƏLAQƏ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+

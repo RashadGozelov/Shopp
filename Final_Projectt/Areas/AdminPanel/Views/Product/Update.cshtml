@@ -1,0 +1,106 @@
+﻿@model ProductViewModel
+    @{
+        ViewData["Title"] = "Update";
+    }
+
+    <style>
+
+        h3, h5 {
+            font-weight: 600;
+        }
+
+        .filter-option-inner-inner {
+            font-size: 15px;
+            font-weight: bold;
+            color: black;
+        }
+
+        button::after {
+            border-top: 0em !important;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="form-group" style="padding-bottom: 70px;padding-left: 57px;">
+                                    <h5>Kateqoriya : </h5>
+                                     <p>@Model.Product.MarkaCategory.Category.Name</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group" style="padding-bottom: 70px;padding-left: 57px;">
+                                    <h5>Marka :</h5>
+                                    <p>@Model.Product.MarkaCategory.Marka.Name</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @foreach (var img in Model.ProductImages)
+                                {
+                                    <div class="col-lg-12 col-12 mb-30">
+                                        <img src="~/img/@img.Image" style="width:200px;height:150px;" />
+                                    </div>
+                                    <div class="col-lg-12 col-12 mt-3 mb-3">
+                                        <input asp-for="@img.PhotoUpd" accept="image/*" multiple name="Photo">
+                                        <span asp-validation-for="@img.PhotoUpd" class="text-danger"></span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="@Model.Product.Name" style="margin-top: -23px;font-size: 16px;color:black;">Name:</label>
+                                <textarea asp-for="@Model.Product.Name" class="form-control" style="font-size: 21px;"></textarea>
+                                <span asp-validation-for="@Model.Product.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="margin-top:55px">
+                                <label asp-for="@Model.Product.Description" style="margin-top: -23px;font-size: 16px;color:black;">Description:</label>
+                                <textarea asp-for="@Model.Product.Description" class="form-control" style="font-size: 21px;"></textarea>
+                                <span asp-validation-for="@Model.Product.Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="margin-top:55px">
+                                <label asp-for="@Model.Product.Price" style="margin-top: -23px;font-size: 16px;color:black;">Price:</label>
+                                <input asp-for="@Model.Product.Price" class="form-control" style="width:50px;" type="number" />
+                                <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="margin-top:55px">
+                                <label asp-for="@Model.Product.Discount" style="margin-top: -23px;font-size: 16px;color:black;">Sale:</label>
+                                <input asp-for="@Model.Product.Discount" min="0" max="99" class="form-control" style="width:50px;" type="number" />
+                                <span asp-validation-for="@Model.Product.Discount" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="margin-top:55px">
+                                <label asp-for="@Model.Product.Count" style="margin-top: -23px;font-size: 16px;color:black;">Count:</label>
+                                <input asp-for="@Model.Product.Count" class="form-control" style="width:50px;" type="number" />
+                                <span asp-validation-for="@Model.Product.Count" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-info" value="Create" />
+
+                </form>
+            </div>
+        </div>
+        <div class="row mt-15">
+            <div class="col-12">
+                <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
+    <script>
+            ClassicEditor
+                .create(document.querySelector('#Product_Name'))
+                .catch(error => {
+                    console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#Product_Description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>

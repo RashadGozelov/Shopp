@@ -1,0 +1,27 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>@Model.Name</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <form method="post">
+                <p class="text-danger">Are you sure this delete?</p>
+                <input type="submit" class="btn btn-danger" value="Delete" />
+            </form>
+
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <a asp-action="Index" class="btn btn-outline-info"><span class="fa fa-arrow-left"></span></a>
+        </div>
+    </div>
+</div>
+

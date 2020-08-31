@@ -1,0 +1,81 @@
+﻿@model ContactViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .contact-address p{
+        display:inline;
+    }
+</style>
+
+<div class="content-wraper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-sm-12">
+                <div class="contact-form">
+                    <div class="contact-title">
+                        <h3>Əlaqə</h3>
+                    </div>
+                    @if (ViewBag.Success != null)
+                    {
+                        <h5 class="text-success">@ViewBag.Success</h5>
+                    }
+                    @if (ViewBag.Error != null)
+                    {
+                        <h5 class="text-warning">@ViewBag.Error</h5>
+                    }
+                    <form id="contact-form" method="post" asp-controller="Contact" asp-action="Message">
+                        <div class="contact-page-form">
+                            <div class="contact-input">
+                                <div class="contact-inner">
+                                    <input asp-for="Name" placeholder="Ad*" autocomplete="off" id="first-name" class="na">
+                                    <span asp-validation-for="Name" class="text-danger" style="font-weight:600; font-size:14px;"></span>
+                                </div>
+                                <div class="contact-inner">
+                                    <input asp-for="Surname" placeholder="Soyad *" autocomplete="off" id="last-name" class="na">
+                                    <span asp-validation-for="Surname" class="text-danger" style="font-weight:600; font-size:14px;"></span>
+                                </div>
+                                <div class="contact-inner">
+                                    <input asp-for="Email" placeholder="E-poçt *" id="email" autocomplete="off" class="na">
+                                    <span asp-validation-for="Email" class="text-danger" style="font-weight:600; font-size:14px;"></span>
+                                </div>
+                                <div class="contact-inner">
+                                    <input asp-for="Subject" placeholder="Subject *" autocomplete="off" id="subject" class="na">
+                                    <span asp-validation-for="Subject" class="text-danger" style="font-weight:600; font-size:14px;"></span>
+                                </div>
+                                <div class="contact-inner contact-message">
+                                    <textarea asp-for="Message" placeholder="Müraciət *" autocomplete="off" class="na"></textarea>
+                                    <span asp-validation-for="Message" class="text-danger" style="font-weight:600; font-size:14px;"></span>
+                                </div>
+                            </div>
+                            <div class="contact-submit-btn">
+                                <button class="submit-btn nb" type="submit">Göndər</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @{
+                IEnumerable<Contact> contacts = (IEnumerable<Contact>)ViewData["SomeList"];
+            }
+            <div class="col-lg-5 col-sm-12">
+                <div class="contact-infor">
+                    <div class="contact-address">
+                        <ul>
+                            <li style="border:none;"><i class="fa fa-fax"> </i>Ünvan : @Html.Raw(contacts.ElementAt(0).Address)</li>
+                            <li><i class="far fa-envelope">&nbsp;</i> @Html.Raw(contacts.ElementAt(0).Mail)</li>
+                            <li><i class="fa fa-phone">&nbsp;</i> @Html.Raw(contacts.ElementAt(0).Phone)</li>
+                        </ul>
+                    </div>
+                    <div class="work-hours">
+                        <h3><strong>İş saatı</strong></h3>
+                        <p><strong>Bazar ertəsi &ndash; Cümə</strong>: &nbsp;08AM &ndash; 22PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

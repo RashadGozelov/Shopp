@@ -1,0 +1,131 @@
+﻿@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/admin/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/admin/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>@ViewBag.Title</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="~/admin/assets/font-awesome/latest/css/font-awesome.min.css">
+    <link href="~/admin/assets/css/material-dashboard.minf066.css?v=2.1.0" rel="stylesheet" />
+    <link href="~/admin/assets/demo/demo.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/8ee7bee6cf.js"></script>
+    <style>
+        .p-icon-password {
+            position: relative;
+        }
+
+        .p-icon-password-eye {
+            position: absolute;
+            top: 25px;
+            right: 10px;
+            font-size: 20px;
+            color: #343a40;
+            cursor: pointer;
+        }
+        #showpw{
+            width:255px;
+        }
+        #showpww {
+            width: 255px;
+        }
+    </style>
+</head>
+<body class="off-canvas-sidebar">
+    <div class="wrapper wrapper-full-page">
+        <div class="page-header login-page header-filter" filter-color="black" style="background-size: cover; background-position: top center;">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+                        <form class="form" method="post">
+                            <div class="card card-login card-hidden">
+                                <div class="card-header card-header-rose text-center">
+                                    <h4 class="card-title">Daxil ol</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <span class="bmd-form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="material-icons">email</i>
+                                                </span>
+                                            </div>
+                                                <input asp-for="Email" class="form-control" placeholder="E-poçt...">
+                                        </div>
+                                        <span asp-validation-for="Email" class="text-danger" style="padding-left: 55px;"></span>
+                                    </span>
+                                    <span class="bmd-form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="material-icons">lock_outline</i>
+                                                </span>
+                                            </div>
+                                            <p class="p-icon-password">
+                                                <input asp-for="Password" class="form-control" placeholder="Şifrə..." id="showpww">
+                                                <i class="fas fa-eye-slash p-icon-password-eye" onclick="showpww();"></i>
+                                            </p>
+                                        </div>
+                                        <span asp-validation-for="Password" class="text-danger" style="padding-left: 55px;"></span>
+                                    </span>
+                                </div>
+                                <div class="card-footer justify-content-center">
+                                    <button class="btn btn-rose btn-link btn-lg">Daxil ol</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/admin/assets/js/core/jquery.min.js"></script>
+    <script src="~/admin/assets/js/core/popper.min.js"></script>
+    <script src="~/admin/assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="~/admin/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script async defer src="~/admin/assets/buttons.github.io/buttons.js"></script>
+    <script src="~/admin/assets/js/plugins/chartist.min.js"></script>
+    <script src="~/admin/assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="~/admin/assets/js/material-dashboard.minf066.js?v=2.1.0" type="text/javascript"></script>
+    <script src="~/admin/assets/demo/demo.js"></script>
+    <script src="~/admin/assets/demo/jquery.sharrre.js"></script>
+    <script>
+        $(document).ready(function () {
+            md.checkFullPageBackgroundImage();
+            setTimeout(function () {
+                // after 1000 ms we add the class animated to the login/register card
+                $('.card').removeClass('card-hidden');
+            }, 700);
+        });
+    </script>
+    <script>
+        function showpw() {
+            var pw = document.getElementById('showpw');
+            if (pw.type == "text")
+                pw.type = "password";
+            else
+                pw.type = "text";
+        }
+        function showpww() {
+            var pww = document.getElementById('showpww');
+            if (pww.type == "text")
+                pww.type = "password";
+            else
+                pww.type = "text";
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+
